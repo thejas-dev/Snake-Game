@@ -748,8 +748,10 @@ export default function SnakeBoard({song1,song4}) {
 					socket.emit('removeRoom',{currentRoom});
 					setCurrentRoom()
 					localStorage.removeItem('snakes');
-					song1.pause();
-					song4.pause();
+					if(typeof Audio !=="undefined"){
+						song1.pause();
+						song4.pause();						
+					}
 					router.push('/')
 				}
 
@@ -774,8 +776,10 @@ export default function SnakeBoard({song1,song4}) {
 							socket.emit('userRemoved',{currentRoom,name,data})				
 							socket.emit('removeRoom',{currentRoom});
 							setCurrentRoom();
-							song1.pause();
-							song4.pause();
+							if(typeof Audio !=="undefined"){
+								song1.pause();
+								song4.pause();								
+							}
 							localStorage.removeItem('snakes');
 							location.reload();
 						}
@@ -794,7 +798,7 @@ export default function SnakeBoard({song1,song4}) {
 	} 
 	
 	useEffect(()=>{
-		if(!sound){
+		if(!sound && typeof Audio !=="undefined"){
 			snake.pause();
 			ladder.pause();
 		}

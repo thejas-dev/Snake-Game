@@ -80,8 +80,10 @@ export default function Form({song1,song4}) {
 				})
 				setCurrentUser(data)
 				router.push('/play')
-				song1.pause();
-				song4.pause();
+				if(typeof Audio !=="undefined"){
+					song1.pause();
+					song4.pause();
+				}
 				// socket.emit('joinroom',user)
 			}
 			if(data.status === true){
@@ -98,8 +100,10 @@ export default function Form({song1,song4}) {
 				})
 				setCurrentUser(data)
 				router.push('/play')
-				song1.pause();
-				song4.pause();
+				if(typeof Audio !=="undefined"){
+					song1.pause();
+					song4.pause();
+				}
 				}else{
 				const newUser ={
 							name:name,
@@ -112,9 +116,11 @@ export default function Form({song1,song4}) {
 					users
 				})
 				setCurrentUser(data)
-				router.push('/play')
+				router.push('/play');
+				if(typeof Audio !=="undefined"){
 				song1.pause();
 				song4.pause();
+				}
 				}
 				// socket.emit('joinroom',user)
 			}

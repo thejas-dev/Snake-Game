@@ -46,37 +46,51 @@ export default function play() {
 				}
 				socket.emit('joinroom',user1);
 			}else{
-				song1.pause();
-				song4.pause();
+				if(typeof Audio !=="undefined"){
+					song1.pause();
+					song4.pause();
+				}
 				router.push('/')
 			}
 		}else{
-			song1.pause();
-			song4.pause();
+			if(typeof Audio !=="undefined"){
+				song1.pause();
+				song4.pause();
+			}
 			router.push('/')
 		}
 	}
 	fetch();
 	song4.addEventListener('ended',()=>{
 		setSongPlaying('1');
-      	song1.play();
+		if(typeof Audio !=="undefined"){
+      		song1.play();
+		}
     })
     song1.addEventListener('ended',()=>{
     	setSongPlaying('4');
-      	song4.play();
+    	if(typeof Audio !=="undefined"){
+      		song4.play();
+    	}
     })	
 },[])
 
 	useEffect(()=>{
 	    if(music && localStorage.getItem('snakes')){
 	    	if(songPlaying==='4'){
-	      		song4.play();
+	    		if(typeof Audio !=="undefined"){
+	      			song4.play();
+	      		}
 	    	}else{
-	    		song1.play();
+	    		if(typeof Audio !=="undefined"){
+	    			song1.play();
+	    		}
 	    	}
 	    }else{
-	      song4.pause();
-	      song1.pause();
+	    	if(typeof Audio !=="undefined"){
+		      song4.pause();
+		      song1.pause();	    		
+	    	}
 	    }
 	},[music])
 

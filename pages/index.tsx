@@ -24,30 +24,42 @@ export default function index() {
 
 	useEffect(()=>{
 		if(localStorage.getItem('snakes')){
-      song4.pause();
-      song1.pause();
+      if(typeof Audio !=="undefined"){
+        song4.pause();
+        song1.pause();        
+      }
 			router.push('/play');
 		}
     song4.addEventListener('ended',()=>{
       setSongPlaying('1');
-      song1.play();
+      if(typeof Audio !=="undefined"){
+        song1.play();
+      }
     })
     song1.addEventListener('ended',()=>{
       setSongPlaying('4');
-      song4.play();
+      if(typeof Audio !=="undefined"){
+        song4.play();
+      }
     })
 	},[])
 
   useEffect(()=>{
     if(music && !localStorage.getItem('snakes')){
       if(songPlaying==='4'){
-          song4.play();
+          if(typeof Audio !=="undefined"){
+            song4.play();
+          }
       }else{
+        if(typeof Audio !=="undefined"){
           song1.play();
+        }
       }
     }else{
-      song4.pause();
-      song1.pause();
+      if(typeof Audio !=="undefined"){
+        song4.pause();
+        song1.pause();
+      }
     }
   },[music])
 
