@@ -25,8 +25,8 @@ export default function index() {
 	useEffect(()=>{
 		if(localStorage.getItem('snakes')){
       if(typeof Audio !=="undefined"){
-        song4.pause();
-        song1.pause();        
+        // song4.pause();
+        // song1.pause();        
       }
 			router.push('/play');
 		}
