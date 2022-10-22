@@ -1,6 +1,6 @@
 # Multiplayer Snake and Ladder Game 
 
-[sanke-in-bite]('https://snakenbite.vercel.app')
+[sanke in bite](https://snakenbite.vercel.app)
 
 <h3>A Simple Snake and Ladder Game Made With Next and React</h3>
 
