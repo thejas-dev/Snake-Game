@@ -19,7 +19,7 @@ export default function index() {
   // const [song1,setSong1] = useState(null);
   // const [song2] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_w2vUtH8u5?ik-sdk-version=javascript-1.4.3&updatedAt=1666427645567"));
   // const [song3] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_eNbkbyoed?ik-sdk-version=javascript-1.4.3&updatedAt=1666427691677"));
-  const [song4,setSong4] = useState(null);
+  // const [song4,setSong4] = useState(null);
   const song1 = document.getElementById('song1')
   const song4 = document.getElementById('song4')
 
