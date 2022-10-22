@@ -20,11 +20,12 @@ export default function index() {
   // const [song2] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_w2vUtH8u5?ik-sdk-version=javascript-1.4.3&updatedAt=1666427645567"));
   // const [song3] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_eNbkbyoed?ik-sdk-version=javascript-1.4.3&updatedAt=1666427691677"));
   const [song4,setSong4] = useState(null);
-
+  const song1 = document.getElementById('song1')
+  const song4 = document.getElementById('song4')
 
 	useEffect(()=>{
-    setSong1(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
-    setSong4(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"))
+    // setSong1(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
+    // setSong4(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"))
 		if(localStorage.getItem('snakes')){
       if(typeof Audio !=="undefined"){
         song4.pause();
@@ -69,6 +70,10 @@ export default function index() {
     <div className="relative bg-[url('https://images.unsplash.com/photo-1595744043037-68de3376ed59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80')] 
     bg-cover md:bg-[#060126] md:bg-[url('https://images.unsplash.com/photo-1635028538158-0105e78c2fcf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')] 
     md:bg-center flex justify-center  md:bg-cover bg-center min-h-screen" >
+     <audio src="https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"
+     id="song1"></audio>
+     <audio src="https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"
+     id="song4"></audio>
      <BsChevronDown 
       onClick={()=>{setReveal(!reveal)}}
       className={`h-9 w-9 rounded-full border-2 shadow-xl shadow-sky-500 bg-black/50
