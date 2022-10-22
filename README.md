@@ -4,7 +4,7 @@
 
 <h3>A Simple Snake and Ladder Game Made With Next and React</h3>
 
-## Powered with Socket and Tailwindcss
+## Powered By Socket and Tailwindcss
 
 Works with Real Time Database
 
