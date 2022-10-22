@@ -16,17 +16,19 @@ export default function index() {
   const [sound,setSound] = useRecoilState(soundState);
   const [songPlaying,setSongPlaying] = useState('4');
   const [reveal,setReveal] = useState(true);
-  const [song1] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
+  const [song1,setSong1] = useState(null);
   // const [song2] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_w2vUtH8u5?ik-sdk-version=javascript-1.4.3&updatedAt=1666427645567"));
   // const [song3] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_eNbkbyoed?ik-sdk-version=javascript-1.4.3&updatedAt=1666427691677"));
-  const [song4] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"));
+  const [song4,setSong4] = useState(null);
 
 
 	useEffect(()=>{
+    setSong1(new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
+    setSong4(new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"))
 		if(localStorage.getItem('snakes')){
       if(typeof Audio !=="undefined"){
-        // song4.pause();
-        // song1.pause();        
+        song4.pause();
+        song1.pause();        
       }
 			router.push('/play');
 		}
