@@ -3,22 +3,18 @@ import Body from '../components/Body';
 import Form from '../components/Form';
 import {useEffect,useState} from 'react';
 import useSound from 'use-sound';
-import {AiOutlineRollback,AiFillSound} from 'react-icons/ai';
+import {AiFillSound} from 'react-icons/ai';
 import {BsChevronDown,BsMusicNoteBeamed} from 'react-icons/bs'
 import {useRouter} from 'next/router';
-import Link from 'next/link';
 import {useRecoilState} from 'recoil';
-import {roomUserState,musicState,soundState} from '../atoms/userAtom';
+import {musicState,soundState} from '../atoms/userAtom';
 
 export default function index() {
-	const [currentRoom,setCurrentRoom] = useRecoilState(roomUserState);
 	const router = useRouter();
   const [music,setMusic] = useRecoilState(musicState);
   const [sound,setSound] = useRecoilState(soundState);
-  const [muted,setMuted] = useState(false)
   const [songPlaying,setSongPlaying] = useState('1');
   const [reveal,setReveal] = useState(true);
-  const [music1,setMusic1] = useState('')
   //const [song1,setSong1] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
   // const [song2] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_w2vUtH8u5?ik-sdk-version=javascript-1.4.3&updatedAt=1666427645567"));
   // const [song3] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_eNbkbyoed?ik-sdk-version=javascript-1.4.3&updatedAt=1666427691677"));
@@ -40,7 +36,6 @@ export default function index() {
  
 
 	useEffect(()=>{
-    setMusic1(document.getElementsByClassName('music1'))
 		if(localStorage.getItem('snakes')){
         stopAudio1();
         stopAudio2();  

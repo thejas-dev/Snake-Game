@@ -1,4 +1,3 @@
-import {motion} from 'framer-motion';
 import {currentUserState,musicState,currentUsersState,snakeBiteState,soundState,ladderBiteState,roomUserState,availableState,extraMoveState} from '../atoms/userAtom';
 import {ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,7 +20,6 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	const [available,setAvailable] = useRecoilState(availableState);
 	const [extraMove,setExtraMove] = useRecoilState(extraMoveState);
 	const [position,setPosition] = useState([]);
-	const [socketInstantiated,setSocketInstantiated] = useState(false)
 	const [name,setName]= useState('');
 	const [snakeBite,setSnakeBite] = useRecoilState(snakeBiteState);
 	const [ladderBite,setLadderBite] = useRecoilState(ladderBiteState);
@@ -48,11 +46,6 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 		progress: undefined,
 		theme: "light",
 	}
-	// useEffect(()=>{
-	// 	socket.emit("ladderBite",{
-	// 		room:currentRoom
-	// 	})
-	// },[currentRoom])
 
 	useEffect(()=>{
 		if(currentUser?.result){
@@ -288,8 +281,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 					index = i;
 				}
 			});	
-			const res = 2;
-			// Math.round(Math.random()*5+1);
+			const res = Math.round(Math.random()*5+1);
 			setTimeout(function() {
 				displayFullScreen(res);
 				const resWithRoom = {

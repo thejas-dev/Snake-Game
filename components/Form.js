@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import axios from 'axios';
-import {socket} from '../service/socket';
 const route = process.env.NEXT_PUBLIC_SERVER_BASE;
 
 export default function Form({stopAudio1,stopAudio2}) {
@@ -84,11 +83,6 @@ export default function Form({stopAudio1,stopAudio2}) {
 				stopAudio2();
 				setMusic(false);
 				router.push('/play')
-				// if(typeof Audio !=="undefined"){
-				// 	song1.pause();
-				// 	song4.pause();
-				// }
-				// socket.emit('joinroom',user)
 			}
 			if(data.status === true){
 				if(data?.docs[0].users.length<1){
@@ -107,10 +101,6 @@ export default function Form({stopAudio1,stopAudio2}) {
 				stopAudio2();
 				setMusic(false);
 				router.push('/play')
-				// if(typeof Audio !=="undefined"){
-				// 	song1.pause();
-				// 	song4.pause();
-				// }
 				}else{
 				const newUser ={
 							name:name,
@@ -127,12 +117,7 @@ export default function Form({stopAudio1,stopAudio2}) {
 				stopAudio2();
 				setMusic(false);
 				router.push('/play');
-				// if(typeof Audio !=="undefined"){
-				// song1.pause();
-				// song4.pause();
-				// }
 				}
-				// socket.emit('joinroom',user)
 			}
 			localStorage.setItem('snakes',JSON.stringify(user));
 			setName('');

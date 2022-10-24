@@ -8,8 +8,7 @@ import {useRecoilState} from 'recoil';
 const route = process.env.NEXT_PUBLIC_SERVER_BASE;
 import {useRouter} from 'next/router';
 import axios from 'axios';
-import {GiRattlesnake} from 'react-icons/gi'
-import {FaChessQueen,FaChess} from 'react-icons/fa';
+import {FaChessQueen} from 'react-icons/fa';
 
 
 export default function play() {
@@ -29,10 +28,7 @@ export default function play() {
  	const [play1,{stop:stopAudio1}] = useSound("/thief.mp3",{
 	    onend:()=>{
 	      setSongPlaying('2')
-	    },
-	    // onload:()=>{
-	    // 	setMusic(false)
-	    // }
+	    }
 	  });
 	const [play2,{stop:stopAudio2}] = useSound('/cold.mp3',{
 	    onend:()=>{
