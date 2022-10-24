@@ -323,18 +323,12 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 				toast(`${res.name} has Joined The Room`,toastOption)
 			})
 			socket.on('recieveSnakeBite',(res)=>{
-				if(sound){
-					playSnake();
-					// navigator.vibrate([500,100,300,100,700]);
-				}
+				navigator.vibrate([500,100,300,100,700]);
 				setSnakeBite(true);
 				setTimeout(function() {setSnakeBite(false)}, 5000);
 			})
 			socket.on('recieveLadderBite',(res)=>{
-				if(sound){
-					playLadder();
-					navigator.vibrate([300,100,200,100,500]);
-				}
+				navigator.vibrate([300,100,200,100,500]);
 				setLadderBite(true);
 				setTimeout(function() {setLadderBite(false)}, 5000);
 			})
@@ -351,6 +345,18 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	const playLadder = () =>{
 		play2();
 	}
+
+	useEffect(()=>{
+		if(sound){
+			play1();
+		}
+	},[snakeBite])
+
+	useEffect(()=>{
+		if(sound){
+			play2();
+		}
+	},[ladderBite])
 
 	const showSnake = (res) =>{
 		if(!animating){
@@ -827,11 +833,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 			className={`h-9 w-9 rounded-2xl border-2 z-10 shadow-xl ${sound ? "shadow-sky-500" : "-rotate-[540deg] shadow-orange-500" } bg-black/50
 			border-red-500 fixed  ${reveal ? "top-[182px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
 			<AiOutlineRollback 
-			onClick={()=>{
-				socket.emit("snakeBite",{
-					room:currentRoom
-				})
-			}}
+			onClick={signOutConfirm}
 			className={`h-9 w-9 rounded-2xl border-2 z-10 shadow-xl shadow-orange-500 bg-black/50
 			border-red-500 fixed  ${reveal ? "top-[229px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
 
