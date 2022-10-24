@@ -3,6 +3,7 @@ import SnakeBoard from '../components/SnakeBoard';
 import {socket} from '../service/socket';
 import {currentUserState,currentUsersState,snakeBiteState,roomUserState,availableState,ladderBiteState,musicState,soundState} from '../atoms/userAtom';
 import {useEffect,useState} from 'react';
+import useSound from 'use-sound';
 import {useRecoilState} from 'recoil';
 const route = process.env.NEXT_PUBLIC_SERVER_BASE;
 import {useRouter} from 'next/router';
@@ -12,6 +13,8 @@ import {FaChessQueen,FaChess} from 'react-icons/fa';
 
 
 export default function play() {
+ 	// const [song1] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
+ 	// const [song4] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"));
 	const [currentUser,setCurrentUser] = useRecoilState(currentUserState);
 	const [currentUsers,setCurrentUsers] = useRecoilState(currentUsersState);
 	const [snakeBite,setSnakeBite] = useRecoilState(snakeBiteState);
@@ -21,12 +24,32 @@ export default function play() {
 	const [players,setPlayers] = useState([]);
 	const [music,setMusic] = useRecoilState(musicState);
   	const [sound,setSound] = useRecoilState(soundState);
-  	const [songPlaying,setSongPlaying] = useState('4');
+  	const [songPlaying,setSongPlaying] = useState('2');
 	const router = useRouter();
- 	const [song1] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_jpmwcDOYU?ik-sdk-version=javascript-1.4.3&updatedAt=1666427604864"));
- 	const [song4] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_GmizVDbYB?ik-sdk-version=javascript-1.4.3&updatedAt=1666427720726"));
-
+ 	const [play1,{stop:stopAudio1}] = useSound("/thief.mp3",{
+	    onend:()=>{
+	      setSongPlaying('2')
+	    },
+	    // onload:()=>{
+	    // 	setMusic(false)
+	    // }
+	  });
+	const [play2,{stop:stopAudio2}] = useSound('/cold.mp3',{
+	    onend:()=>{
+	      setSongPlaying('1')
+	    },
+	    onload:()=>{
+      		playSong();
+	    }
+	})
 	
+	  const playSong = () =>{
+	      setTimeout(function() {
+	      	play2();
+	      	setMusic(true)
+	      }, 3000);
+	  }
+
 	useEffect(()=>{
 		async function fetch() {
 		if(localStorage.getItem('snakes')){
@@ -46,54 +69,38 @@ export default function play() {
 				}
 				socket.emit('joinroom',user1);
 			}else{
-				if(typeof Audio !=="undefined"){
-					song1.pause();
-					song4.pause();
-				}
+				stopAudio1();
+				stopAudio2();
+				setMusic(false);
 				router.push('/')
 			}
 		}else{
-			if(typeof Audio !=="undefined"){
-				song1.pause();
-				song4.pause();
-			}
+			stopAudio1();
+			stopAudio2();
+			setMusic(false);
 			router.push('/')
 		}
 	}
-	fetch();
-	song4.addEventListener('ended',()=>{
-		setSongPlaying('1');
-		if(typeof Audio !=="undefined"){
-      		song1.play();
-		}
-    })
-    song1.addEventListener('ended',()=>{
-    	setSongPlaying('4');
-    	if(typeof Audio !=="undefined"){
-      		song4.play();
-    	}
-    })	
+	fetch();	
 },[])
 
-	useEffect(()=>{
-	    if(music && localStorage.getItem('snakes')){
-	    	if(songPlaying==='4'){
-	    		if(typeof Audio !=="undefined"){
-	      			song4.play();
-	      		}
-	    	}else{
-	    		if(typeof Audio !=="undefined"){
-	    			song1.play();
-	    		}
-	    	}
-	    }else{
-	    	if(typeof Audio !=="undefined"){
-		      song4.pause();
-		      song1.pause();	    		
-	    	}
-	    }
-	},[music])
 
+	useEffect(()=>{
+    if(music && localStorage.getItem('snakes')){
+        if(songPlaying==='1'){
+            play1();         
+        }else{
+          play2();
+        }        
+     
+    }else{
+      stopAudio1();
+      stopAudio2();
+      setMusic(false)
+    }
+  },[music,songPlaying])
+
+	
 
 	return(
 		<div className="relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1595744043037-68de3376ed59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80')] 
@@ -111,7 +118,7 @@ export default function play() {
 				"https://ik.imagekit.io/d3kzbpbila/thejashari_acUAOx_of?ik-sdk-version=javascript-1.4.3&updatedAt=1665237423310"
 				alt=""/>
 			</div>
-	     	<SnakeBoard song1={song1} song4={song4} />
+	     	<SnakeBoard stopAudio1={stopAudio1} stopAudio2={stopAudio2} />
 	      </div>
 	      <div className="flex flex-col members text-white max-w-6xl m-5 flex items-center text-center justify-center">
 	      	<h2 className="font-semibold m-5 text-2xl text-gray-300" >Active Players</h2>
@@ -144,7 +151,7 @@ export default function play() {
 	    </div>
 
 	    <img 
-	    className={`fixed w-70 ${snakeBite ? "opacity-80 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
+	    className={`fixed w-70 ${snakeBite ? "opacity-100 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
 	    src="https://ik.imagekit.io/d3kzbpbila/snake-hisss_LkDDqUmxG.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1666362032255"
 		alt=""/>
 		<img 

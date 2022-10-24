@@ -3,6 +3,7 @@ import {currentUserState,musicState,currentUsersState,snakeBiteState,soundState,
 import {ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useRecoilState} from 'recoil';
+import useSound from 'use-sound';
 import {useEffect,useState} from 'react';
 import {FaChessQueen,FaChess} from 'react-icons/fa';
 import {AiOutlineRollback,AiFillSound} from 'react-icons/ai';
@@ -12,7 +13,7 @@ import {useRouter} from 'next/router'
 import axios from 'axios';
 const route = process.env.NEXT_PUBLIC_SERVER_BASE;
 
-export default function SnakeBoard({song1,song4}) {
+export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	const router = useRouter();
 	const [currentUser,setCurrentUser] = useRecoilState(currentUserState);
 	const [currentUsers,setCurrentUsers] = useRecoilState(currentUsersState);
@@ -32,8 +33,10 @@ export default function SnakeBoard({song1,song4}) {
 	const [reveal,setReveal] = useState(true);
 	const [animating,setAnimating] = useState(false);
 	let users = currentUsers;
-	const [snake] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_5PXMi4Ujb?ik-sdk-version=javascript-1.4.3&updatedAt=1666422365634"));
-	const [ladder] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari__fPbLnRfC?ik-sdk-version=javascript-1.4.3&updatedAt=1666422414129"));
+	// const [snake] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_5PXMi4Ujb?ik-sdk-version=javascript-1.4.3&updatedAt=1666422365634"));
+	// const [ladder] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari__fPbLnRfC?ik-sdk-version=javascript-1.4.3&updatedAt=1666422414129"));
+	const [play3,{stop:stopAudio3}] = useSound("/snake.mp3");
+	const [play4,{stop:stopAudio4}] = useSound("/happy.mp3");
 
 	const toastOption={
 		position: "top-right",
@@ -285,7 +288,8 @@ export default function SnakeBoard({song1,song4}) {
 					index = i;
 				}
 			});	
-			const res = Math.round(Math.random()*5+1);
+			const res = 2;
+			// Math.round(Math.random()*5+1);
 			setTimeout(function() {
 				displayFullScreen(res);
 				const resWithRoom = {
@@ -302,11 +306,10 @@ export default function SnakeBoard({song1,song4}) {
 		if(users.length<=1){
 			toast('2 or More Players are Required to Start the Game',toastOption);
 		}
-	}
+	};
 
 	useEffect(()=>{
-		if(socket && !socketInstantiated){
-			setSocketInstantiated(true)
+		if(socket){
 			socket.on('recieve',(res)=>{
 				displayFullScreen(res);
 			})
@@ -330,7 +333,7 @@ export default function SnakeBoard({song1,song4}) {
 			socket.on('recieveSnakeBite',(res)=>{
 				if(sound){
 					navigator.vibrate([500,100,300]);
-					snake.play();
+					play3();
 				}
 				setSnakeBite(true);
 				setTimeout(function() {setSnakeBite(false)}, 5000);
@@ -338,7 +341,7 @@ export default function SnakeBoard({song1,song4}) {
 			socket.on('recieveLadderBite',(res)=>{
 				if(sound){
 					navigator.vibrate([300,100,200]);
-					ladder.play();
+					play4();
 				}
 				setLadderBite(true);
 				setTimeout(function() {setLadderBite(false)}, 5000);
@@ -348,8 +351,7 @@ export default function SnakeBoard({song1,song4}) {
 			})
 		}
 		
-	},[])
-
+	},[]);
 
 	const showSnake = (res) =>{
 		if(!animating){
@@ -369,7 +371,7 @@ export default function SnakeBoard({song1,song4}) {
 			user = JSON.parse(user)
 			setName(user.name)			
 		}
-	},[])
+	},[]);
 
 	const displayFullScreen = (res) =>{
 		setResult(res)
@@ -748,10 +750,13 @@ export default function SnakeBoard({song1,song4}) {
 					socket.emit('removeRoom',{currentRoom});
 					setCurrentRoom()
 					localStorage.removeItem('snakes');
-					if(typeof Audio !=="undefined"){
-						song1.pause();
-						song4.pause();						
-					}
+					stopAudio1();
+					stopAudio2();
+					setMusic(false);
+					// if(typeof Audio !=="undefined"){
+					// 	song1.pause();
+					// 	song4.pause();						
+					// }
 					router.push('/')
 				}
 
@@ -776,10 +781,13 @@ export default function SnakeBoard({song1,song4}) {
 							socket.emit('userRemoved',{currentRoom,name,data})				
 							socket.emit('removeRoom',{currentRoom});
 							setCurrentRoom();
-							if(typeof Audio !=="undefined"){
-								song1.pause();
-								song4.pause();								
-							}
+							stopAudio1();
+							stopAudio2();
+							setMusic(false);
+							// if(typeof Audio !=="undefined"){
+							// 	song1.pause();
+							// 	song4.pause();								
+							// }
 							localStorage.removeItem('snakes');
 							location.reload();
 						}
@@ -798,9 +806,9 @@ export default function SnakeBoard({song1,song4}) {
 	} 
 	
 	useEffect(()=>{
-		if(!sound && typeof Audio !=="undefined"){
-			snake.pause();
-			ladder.pause();
+		if(!sound){
+			stopAudio3();
+			stopAudio4();
 		}
 	},[sound])
 

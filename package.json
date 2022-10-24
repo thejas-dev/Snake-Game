@@ -15,10 +15,12 @@
     "next-auth": "^4.12.3",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-h5-audio-player": "^3.8.6",
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.8",
     "recoil": "^0.7.5",
-    "socket.io-client": "^4.5.2"
+    "socket.io-client": "^4.5.2",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "17.0.35",

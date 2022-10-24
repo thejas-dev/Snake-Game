@@ -1,5 +1,5 @@
 import {motion} from 'framer-motion' ;
-import {currentUserState,currentColorState,roomUserState,positionState} from '../atoms/userAtom';
+import {currentUserState,currentColorState,roomUserState,positionState,musicState} from '../atoms/userAtom';
 import {useRecoilState} from 'recoil';
 import {ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,13 +9,15 @@ import axios from 'axios';
 import {socket} from '../service/socket';
 const route = process.env.NEXT_PUBLIC_SERVER_BASE;
 
-export default function Form({song1,song4}) {
+export default function Form({stopAudio1,stopAudio2}) {
 
 	const [currentUser,setCurrentUser] = useRecoilState(currentUserState);
 	const [currentRoom,setCurrentRoom] = useRecoilState(roomUserState);
+	const [music,setMusic] = useRecoilState(musicState);
 	const [currentColor,setCurrentColor] = useRecoilState(currentColorState)
 	const [position,setPosition] = useRecoilState(positionState);
 	const [name,setName] = useState('');
+	const [submitted,setSubmitted] = useState(false)
 	const [room,setRoom] = useState('');
 	const [color,setColor] = useState('#f745e6');
 	const router = useRouter();
@@ -36,6 +38,7 @@ export default function Form({song1,song4}) {
 		if(room.length>3){
 			if(name.length>3){
 				handleSubmit();
+				setSubmitted(true)
 			}else{
 				console.log("Name Must Have More than 3 Characters")
 			}
@@ -56,7 +59,6 @@ export default function Form({song1,song4}) {
 		const {data} = await axios.post(`${route}/api/auth/checkRoom`,{
 			name:room,
 		})
-		console.log(data)
 		const RoomId = data?.docs[0]?._id;
 		const users = data?.docs[0]?.users;
 		const allUsers = users?.map((user)=>{
@@ -65,7 +67,6 @@ export default function Form({song1,song4}) {
 		if(allUsers && allUsers.includes(name)){
 			toast("Player With Same Name Already Exists in this Room",toastOption)
 		}else{
-			console.log("NO Players with this name")
 			if(data.status===false){
 				const{data} = await axios.post(`${route}/api/auth/createRoom`,{
 					name:room,
@@ -79,11 +80,14 @@ export default function Form({song1,song4}) {
 					]
 				})
 				setCurrentUser(data)
+				stopAudio1();
+				stopAudio2();
+				setMusic(false);
 				router.push('/play')
-				if(typeof Audio !=="undefined"){
-					song1.pause();
-					song4.pause();
-				}
+				// if(typeof Audio !=="undefined"){
+				// 	song1.pause();
+				// 	song4.pause();
+				// }
 				// socket.emit('joinroom',user)
 			}
 			if(data.status === true){
@@ -99,11 +103,14 @@ export default function Form({song1,song4}) {
 					users
 				})
 				setCurrentUser(data)
+				stopAudio1();
+				stopAudio2();
+				setMusic(false);
 				router.push('/play')
-				if(typeof Audio !=="undefined"){
-					song1.pause();
-					song4.pause();
-				}
+				// if(typeof Audio !=="undefined"){
+				// 	song1.pause();
+				// 	song4.pause();
+				// }
 				}else{
 				const newUser ={
 							name:name,
@@ -116,11 +123,14 @@ export default function Form({song1,song4}) {
 					users
 				})
 				setCurrentUser(data)
+				stopAudio1();
+				stopAudio2();
+				setMusic(false);
 				router.push('/play');
-				if(typeof Audio !=="undefined"){
-				song1.pause();
-				song4.pause();
-				}
+				// if(typeof Audio !=="undefined"){
+				// song1.pause();
+				// song4.pause();
+				// }
 				}
 				// socket.emit('joinroom',user)
 			}
@@ -213,21 +223,27 @@ export default function Form({song1,song4}) {
 					value={color}
 					/>
 				</motion.div>
-				<motion.button 
-				initial={{
-					scale:0.3,
-					opacity:0
-				}}
-				transition={{duration:4,
-				 type: "spring", stiffness: 400, damping: 10 }}
-				whileInView={{opacity:1,scale:1}}
-				whileHover={{
-				    scale: 1.1
-				  }}
-				  whileTap={{ scale: 0.8 }}
-				type="submit" 
-				className="mt-10 rounded-full text-white bg-sky-500/70 pr-5 pl-5 pt-2 pb-2 text-xl border-2 border-orange-500 
-				shadow-orange-500/40 mb-10 font-semibold shadow-xl">Join</motion.button>
+				{
+					submitted?  "" : 
+						<motion.button 
+						initial={{
+							scale:0.3,
+							opacity:0
+						}}
+						transition={{duration:4,
+						 type: "spring", stiffness: 400, damping: 10 }}
+						whileInView={{opacity:1,scale:1}}
+						whileHover={{
+						    scale: 1.1
+						  }}
+						  whileTap={{ scale: 0.8 }}
+						type="submit" 
+						className="mt-10 rounded-full text-white bg-sky-500/70 pr-5 pl-5 pt-2 pb-2 text-xl border-2 border-orange-500 
+						shadow-orange-500/40 mb-10 font-semibold shadow-xl">
+							Join
+						</motion.button>
+				}
+				
 
 			</form>
 		</div>

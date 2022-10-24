@@ -48,7 +48,7 @@ export const currentUsersState = atom({
 
 export const musicState = atom({
 	key:"musicState",
-	default:true
+	default:false
 })
 
 export const soundState = atom({
