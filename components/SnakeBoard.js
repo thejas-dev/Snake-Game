@@ -892,11 +892,11 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 				{resAnimation?
 				<div>
 				<div className="fixed top-0 left-0 animate-revealbg bg-black opacity-0 w-[100vw] h-[100vh]"></div>
-					<h1 className={`text-white animate-reveal opacity-0 text-xl font-serif text-yellow-300`}>{result}</h1>
+					<h1 className={`text-white animate-reveal opacity-0 z-30 text-xl font-serif text-yellow-300`}>{result}</h1>
 						<img src="https://ik.imagekit.io/d3kzbpbila/snakeres_NqZKsFrYk.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1665850866863"
-						className="animate-snakeFromLeft h-30 w-30 fixed top-50 left-[100%]" alt=""/>
+						className="animate-snakeFromLeft h-30 w-30 z-30 fixed top-50 left-[100%]" alt=""/>
 						<img src="https://ik.imagekit.io/d3kzbpbila/snakeres_NqZKsFrYk.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1665850866863"
-						className="animate-snakeFromRight h-30 w-30 fixed top-20 right-[100%] rotate-180" alt=""/>
+						className="animate-snakeFromRight h-30 w-30 z-30 fixed top-20 right-[100%] rotate-180" alt=""/>
 				</div>
 				: ""
 				}
