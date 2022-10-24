@@ -192,7 +192,7 @@ export default function Form({stopAudio1,stopAudio2}) {
 					y:-200
 				}}
 				transition={{duration:2.5,
-				type: "spring", stiffness: 400, damping: 10 }}
+				type: "spring", stiffness: 700, damping: 10 }}
 				whileInView={{opacity:1,y:0}}
 				whileHover={{
 				    scale: 1.1
