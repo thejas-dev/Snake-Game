@@ -347,13 +347,13 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	}
 
 	useEffect(()=>{
-		if(sound){
+		if(sound && snakeBite){
 			play1();
 		}
 	},[snakeBite])
 
 	useEffect(()=>{
-		if(sound){
+		if(sound && ladderBite){
 			play2();
 		}
 	},[ladderBite])
