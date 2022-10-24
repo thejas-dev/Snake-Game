@@ -46,8 +46,8 @@ export default function Header() {
 		        onClick={handleClose1}
 		    >
 		    	<div className="h-screen overflow-y-scroll flex items-center justify-center m-7 md:m-40 flex-col">
-		    		<h1 className="text-xl bg-gray-900/40 p-[10px] rounded-full shadow-xl shadow-orange-600/70   text-orange-500 font-bold">Multiplayer Snake Game</h1>
-		    		<p className="text-md mt-10 font-semibold bg-gray-900/40 p-5 rounded-lg shadow-xl shadow-orange-600/70">
+		    		<h1 className="text-xl bg-gray-900/40 p-[5px] md:p-[10px] rounded-full shadow-xl shadow-orange-600/70   text-orange-500 font-bold">Multiplayer Snake Game</h1>
+		    		<p className="text-md mt-2 md:mt-10 font-semibold bg-gray-900/40 p-5 rounded-lg shadow-xl shadow-orange-600/70">
 		    			A Simple Real Time Multiplayer Snake and Ladder Game. <b className="text-yellow-500"> Simple Concept join a Room with Your Name and ask Your Friends To join the Same Room By Sharing the Room Name You used to Join in,</b> Roll the Dice in Your Chance and Make Your Move. 
 		    			<br/>
 		    			<br/>
@@ -73,8 +73,8 @@ export default function Header() {
 		        onClick={handleClose2}
 		    >
 		    	<div className="h-screen overflow-y-scroll flex items-center justify-center m-7 md:m-40 flex-col">
-		    		<h1 className="text-xl bg-gray-900/40 p-[10px] rounded-full shadow-xl shadow-orange-600/70   text-orange-500 font-bold">Frequently Asked Questions</h1>
-		    		<p className="text-md mt-10 font-semibold bg-gray-900/70 p-5 rounded-lg shadow-xl shadow-orange-600/70">
+		    		<h1 className="text-xl bg-gray-900/40 p-[5px] md:p-[10px] rounded-full shadow-xl shadow-orange-600/70   text-orange-500 font-bold">Frequently Asked Questions</h1>
+		    		<p className="text-md mt-2 md:mt-10 font-semibold bg-gray-900/70 p-5 rounded-lg shadow-xl shadow-orange-600/70">
 		    			<b className="text-yellow-500"> Q: How to Join a Room?</b>
 		    			<br/>
 		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; Enter The Room Name, Your Name, Select Your Favorite Color then Press Play Button to Join a Room.</b>
