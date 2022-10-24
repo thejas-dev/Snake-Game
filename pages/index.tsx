@@ -29,9 +29,6 @@ export default function index() {
     onend:()=>{
       setSongPlaying('1')
     },
-    onload:()=>{
-      playSong();
-    }
   })
  
 
@@ -58,12 +55,6 @@ export default function index() {
     }
   },[music,songPlaying])
 
-  const playSong = () =>{
-        setTimeout(function() {
-          play2();
-          setMusic(true)
-        }, 3000);
-    }
 
   return(
     <div className="relative bg-[url('https://images.unsplash.com/photo-1595744043037-68de3376ed59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80')] 
