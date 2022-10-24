@@ -828,7 +828,9 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 			border-red-500 fixed  ${reveal ? "top-[182px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
 			<AiOutlineRollback 
 			onClick={()=>{
-				play2();
+				socket.emit("snakeBite",{
+					room:currentRoom
+				})
 			}}
 			className={`h-9 w-9 rounded-2xl border-2 z-10 shadow-xl shadow-orange-500 bg-black/50
 			border-red-500 fixed  ${reveal ? "top-[229px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
