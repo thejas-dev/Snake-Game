@@ -33,8 +33,8 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	let users = currentUsers;
 	// const [snake] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_5PXMi4Ujb?ik-sdk-version=javascript-1.4.3&updatedAt=1666422365634"));
 	// const [ladder] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari__fPbLnRfC?ik-sdk-version=javascript-1.4.3&updatedAt=1666422414129"));
-	const [play3,{stop:stopAudio3}] = useSound("/snake.mp3");
-	const [play4,{stop:stopAudio4}] = useSound("/happy.mp3");
+	const [play1,{stop:stopAudio3}] = useSound("/snake.mp3");
+	const [play2,{stop:stopAudio4}] = useSound("/happy.mp3");
 
 	const toastOption={
 		position: "top-right",
@@ -346,10 +346,10 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	},[]);
 
 	const playSnake = () =>{
-		play3();
+		play1();
 	}
 	const playLadder = () =>{
-		play4();
+		play2();
 	}
 
 	const showSnake = (res) =>{
