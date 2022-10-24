@@ -325,7 +325,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 			socket.on('recieveSnakeBite',(res)=>{
 				if(sound){
 					playSnake();
-					navigator.vibrate([500,100,300,100,700]);
+					// navigator.vibrate([500,100,300,100,700]);
 				}
 				setSnakeBite(true);
 				setTimeout(function() {setSnakeBite(false)}, 5000);
