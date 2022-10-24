@@ -48,7 +48,7 @@ export default function Header() {
 		    	<div className="h-screen overflow-y-scroll flex items-center justify-center m-7 md:m-40 flex-col">
 		    		<h1 className="text-xl bg-gray-900/40 p-[5px] md:p-[10px] rounded-full shadow-xl shadow-orange-600/70   text-orange-500 font-bold">Multiplayer Snake Game</h1>
 		    		<p className="text-md mt-2 md:mt-10 font-semibold bg-gray-900/40 p-5 rounded-lg shadow-xl shadow-orange-600/70">
-		    			A Simple Real Time Multiplayer Snake and Ladder Game. <b className="text-yellow-500"> Simple Concept join a Room with Your Name and ask Your Friends To join the Same Room By Sharing the Room Name You used to Join in,</b> Roll the Dice in Your Chance and Make Your Move. 
+		    			A Simple Real Time Multiplayer Snake and Ladder Game. <b className="text-yellow-500"> Concept is Simple join a Room with any Random Words and ask Your Friends To join the Same Room By Sharing the Room Name You used to Join in,</b> Roll the Dice in Your Chance and Make Your Move. 
 		    			<br/>
 		    			<br/>
 		    			<b className="text-green-500" >Everyone in a Room Get a Chance to Roll Dice Depending on the Order of Members Joining in a Room.</b>
@@ -57,10 +57,7 @@ export default function Header() {
 		    			No Limit for Players to Join in The Same Room and Play Together.
 		    			<br/>
 		    			<br/>
-		    			Page accidently Reloaded While Playing? Dont Worry Real Time Database Will Always Save Your Progress. 
-		    			<br/>
-		    			<br/>
-		    			<b className="text-sky-500">Player who makes 100th Position First will Win the Match</b> and their Name Will be Broadcasted to Everyone Who is Active In This Webgame. 
+		    			<b className="text-sky-500">Player who makes 100th Position First will Win the Match</b> and their Name Will be Broadcasted to Everyone. 
 		    			<br/>
 		    			<br/>
 		    			Made With ♥️ by <a href="https://instagram.com/nuthejashari" className="text-sky-500">Thejas Hari</a>
