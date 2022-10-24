@@ -191,13 +191,12 @@ export default function Form({stopAudio1,stopAudio2}) {
 					opacity:0,
 					y:-200
 				}}
-				transition={{duration:2.5,
-				type: "spring", stiffness: 700, damping: 10 }}
+				transition={{duration:2.5}}
 				whileInView={{opacity:1,y:0}}
 				whileHover={{
 				    scale: 1.1
-				  }}
-				  whileTap={{ scale: 0.8 }}
+				}}
+				whileTap={{ scale: 0.8 }}
 				className="mt-5 rounded-full bg-black/70 text-white 
 				border-2 border-red-500 shadow-xl shadow-orange-500/40
 				focus-within:border-sky-500 focus-within:shadow-sky-500/40 transition-shadow
