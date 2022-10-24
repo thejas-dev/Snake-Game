@@ -63,15 +63,15 @@ export default function index() {
      <BsChevronDown 
       onClick={()=>{setReveal(!reveal)}}
       className={`h-9 w-9 rounded-full border-2 shadow-xl shadow-sky-500 bg-black/50
-      border-red-500 fixed top-[88px] ${reveal ? "-rotate-[540deg] transition duration-1400 ease-in-out" : ""} p-2 z-20 text-sky-500 left-2 cursor-pointer hover:scale-110 hover:shadow-orange-500 transition-all duration-400 z-20 ease-in-out`} />
+      border-red-500 fixed top-[88px] ${reveal ? "-rotate-[540deg] transition duration-1400 ease-in-out" : ""} p-2 z-20 text-sky-500 left-2 md:left-3 cursor-pointer hover:scale-110 hover:shadow-orange-500 transition-all duration-400 z-20 ease-in-out`} />
       <BsMusicNoteBeamed 
       onClick={()=>{setMusic(!music)}}
       className={`h-9 w-9 rounded-2xl border-2 z-10 shadow-xl ${music ? "shadow-sky-500" : "-rotate-[540deg] shadow-orange-500" } bg-black/50
-      border-red-500 fixed  ${reveal ? "top-[135px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-2 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
+      border-red-500 fixed  ${reveal ? "top-[135px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-2 md:left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
       <AiFillSound 
       onClick={()=>{setSound(!sound)}}
       className={`h-9 w-9 rounded-2xl border-2 z-10 shadow-xl ${sound ? "shadow-sky-500" : "-rotate-[540deg] shadow-orange-500" } bg-black/50
-      border-red-500 fixed  ${reveal ? "top-[182px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-2 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
+      border-red-500 fixed  ${reveal ? "top-[182px] opacity-100" : "top-[88px] opacity-0"} p-2 z-20 text-sky-500 left-2 md:left-3 cursor-pointer hover:scale-110 transition-all duration-400 ease-in-out`} />
      
       <Header/>
       <div className="max-w-6xl flex items-center flex-col" >
