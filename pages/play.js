@@ -147,11 +147,11 @@ export default function play() {
 	    </div>
 
 	    <img 
-	    className={`fixed w-70 ${snakeBite ? "opacity-100 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
+	    className={`fixed w-70 ${snakeBite ? "opacity-100 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out z-30 rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
 	    src="https://ik.imagekit.io/d3kzbpbila/snake-hisss_LkDDqUmxG.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1666362032255"
 		alt=""/>
 		<img 
-	    className={`fixed w-70 ${ladderBite ? "opacity-80 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
+	    className={`fixed w-70 ${ladderBite ? "opacity-80 transition duration-400 ease-in-out" : "opacity-0 transition duration-400 ease-in-out"} transition duration-500 ease-in-out z-30 rounded-lg h-55 bottom-7 right-7 shadow-lg shadow-red-500`} 
 	    src="https://ik.imagekit.io/d3kzbpbila/woody-woodpecker-ladder_qgbDsVEFO.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1666364404474"
 		alt=""/>
 

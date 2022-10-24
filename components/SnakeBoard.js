@@ -324,7 +324,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 			})
 			socket.on('recieveSnakeBite',(res)=>{
 				if(sound){
-					navigator.vibrate([500,100,300]);
+					navigator.vibrate([500,100,300,100,700]);
 					play3();
 				}
 				setSnakeBite(true);
@@ -332,7 +332,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 			})
 			socket.on('recieveLadderBite',(res)=>{
 				if(sound){
-					navigator.vibrate([300,100,200]);
+					navigator.vibrate([300,100,200,100,500]);
 					play4();
 				}
 				setLadderBite(true);
