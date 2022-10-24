@@ -87,17 +87,12 @@ export default function Header() {
 		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; Yes Your Progress will be Automatically Saved.</b>
 		    			<br/>
 		    			<br/>
-		    			<b className="text-yellow-500"> Q: How to stop the Music?</b>
+		    			<b className="text-yellow-500"> Q: How to Stop the Music or Exit from a Room?</b>
 		    			<br/>
-		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; Music and Sound Effects can be muted by Drop Down menu in top left.</b>
-		    			<br/>
-		    			<br/>
-		    			<b className="text-yellow-500"> Q: How to Exit from a Room?</b>
-		    			<br/>
-		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; By Fall Back Icon in Drop Down Menu(Top Left).</b>
+		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; By Music Icon and Fall Back Icon in Drop Down Menu(Top Left).</b>
 		    			<br/>
 		    			<br/>
-		    			<b className="text-yellow-500"> Q: How to Report an Error?</b>
+		    			<b className="text-yellow-500"> Q: How to Report an Bug?</b>
 		    			<br/>
 		    			<b className="text-green-500">&nbsp;&nbsp;&nbsp; By Insta, Link in About Section.</b>
 		    		</p>	
