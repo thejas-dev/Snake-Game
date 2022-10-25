@@ -391,9 +391,6 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 		let myInterval = setInterval(async function() {
 			newPosition++;
 			iterate++;
-			if(newPosition === 100){
-				socket.emit('winner',{name,currentRoom});
-			}
 			if(iterate>res){
 				clearInterval(myInterval);
 				socket.emit('extraMoveOff',{
@@ -518,6 +515,19 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 									room:currentRoom
 								})
 								break;
+							case 100:
+								socket.emit('winner',{name,currentRoom});
+								toast(` Congratulations 🦄 ${name} !, You Can Leave the Room To Avoid Getting Chance of Roll.`,{
+									position: "top-right",
+									autoClose: 10000,
+									hideProgressBar: false,
+									closeOnClick: true,
+									pauseOnHover: true,
+									draggable: true,
+									progress: undefined,
+									theme: "dark",
+								});
+								break;
 							default:
 								break;
 						}								
@@ -635,6 +645,19 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 									room:currentRoom
 								})
 								break;
+							case 100:
+								socket.emit('winner',{name,currentRoom});
+								toast(` Congratulations 🦄 ${name} !, You Can Leave the Room To Avoid Getting Chance of Roll.`,{
+									position: "top-right",
+									autoClose: 10000,
+									hideProgressBar: false,
+									closeOnClick: true,
+									pauseOnHover: true,
+									draggable: true,
+									progress: undefined,
+									theme: "dark",
+								});
+								break;
 							default:
 								break;
 						}						
@@ -733,18 +756,18 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 		},400)
 	}
 
-	const signOut = async() =>{
-		if(!extraMove && !available){
-			let ind2;
-			users.map((user2,i)=>{
-				if(user2.name === name){
-					ind2 = i;
-				}
-			})
-			let newUsers2 = users;
-			console.log(newUsers2)
-			newUsers2 = JSON.stringify(newUsers2);
-			newUsers2 = JSON.parse(newUsers2);
+		const signOut = async() =>{
+			if(!extraMove && !available){
+				let ind2;
+				users.map((user2,i)=>{
+					if(user2.name === name){
+						ind2 = i;
+					}
+				})
+				let newUsers2 = users;
+				console.log(newUsers2)
+				newUsers2 = JSON.stringify(newUsers2);
+				newUsers2 = JSON.parse(newUsers2);
 				newUsers2.splice(ind2,1);
 				if(newUsers2.length>0){
 					const {data} = await axios.post(`${route}/api/auth/editPosition`,{
@@ -758,15 +781,11 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 					stopAudio1();
 					stopAudio2();
 					setMusic(false);
-					// if(typeof Audio !=="undefined"){
-					// 	song1.pause();
-					// 	song4.pause();						
-					// }
 					router.push('/')
 				}
 
-		}else{
-			if(available && users.length===1){
+			}else{
+				if(available && users.length===1){
 					if(!extraMove){
 						let ind2;
 						users.map((user2,i)=>{
@@ -789,10 +808,6 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 							stopAudio1();
 							stopAudio2();
 							setMusic(false);
-							// if(typeof Audio !=="undefined"){
-							// 	song1.pause();
-							// 	song4.pause();								
-							// }
 							localStorage.removeItem('snakes');
 							location.reload();
 						}
@@ -800,7 +815,12 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 						toast("Please Wait untill all Coins Stop Moving",toastOption);
 					}
 				}else{
-					toast("Please Finish The Move Before Leaving The Match")
+					if(available){
+						toast("Please Finish The Move Before Leaving The Match",toastOption);
+					}
+					if(extraMove){
+						toast("Please Wait untill all Coins Stop Moving",toastOption);
+					}
 				}
 			}
 		}
