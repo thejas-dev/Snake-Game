@@ -31,8 +31,6 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 	const [reveal,setReveal] = useState(true);
 	const [animating,setAnimating] = useState(false);
 	let users = currentUsers;
-	// const [snake] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari_5PXMi4Ujb?ik-sdk-version=javascript-1.4.3&updatedAt=1666422365634"));
-	// const [ladder] = useState(typeof Audio !=="undefined" &&  new Audio("https://ik.imagekit.io/d3kzbpbila/Audios/thejashari__fPbLnRfC?ik-sdk-version=javascript-1.4.3&updatedAt=1666422414129"));
 	const [play1,{stop:stopAudio3}] = useSound("/snake.mp3");
 	const [play2,{stop:stopAudio4}] = useSound("/happy.mp3");
 
@@ -518,7 +516,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 							case 100:
 								socket.emit('winner',{name,currentRoom});
 								toast(` Congratulations 🦄 ${name} !, You Can Leave the Room To Avoid Getting Chance of Roll.`,{
-									position: "top-right",
+									position: "bottom-right",
 									autoClose: 10000,
 									hideProgressBar: false,
 									closeOnClick: true,
@@ -648,7 +646,7 @@ export default function SnakeBoard({stopAudio1,stopAudio2}) {
 							case 100:
 								socket.emit('winner',{name,currentRoom});
 								toast(` Congratulations 🦄 ${name} !, You Can Leave the Room To Avoid Getting Chance of Roll.`,{
-									position: "top-right",
+									position: "bottom-right",
 									autoClose: 10000,
 									hideProgressBar: false,
 									closeOnClick: true,
